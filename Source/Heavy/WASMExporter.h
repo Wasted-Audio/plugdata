@@ -110,6 +110,21 @@ public:
         outputFile.getChildFile("ir").deleteRecursively();
         outputFile.getChildFile("hv").deleteRecursively();
 
+
+        File serverExecutable = Toolchain::dir.getChildFile("bin").getChildFile("server" + exeSuffix);
+
+        auto serverScript = serverExecutable.getFullPathName() + " " + outdir + "/js/";
+
+        ChildProcess process;
+        Toolchain::startShellScriptLongRunning(serverScript, process);
+        process.start(arguments, ChildProcess::wantStdOut | ChildProcess::wantStdErr);
+
+        if (shouldQuit)
+        {
+            process.kill();
+            return true;
+        }
+
         // Delay to get correct exit code
         Time::waitForMillisecondCounter(Time::getMillisecondCounter() + 300);
 
