@@ -147,7 +147,7 @@ public:
                 return;
             }
 
-            String downloadLocation = "https://github.com/plugdata-team/plugdata-heavy-toolchain/releases/download/v" + latestVersion + "/";
+            String downloadLocation = "https://mrtoasted.com/~dreamer/plugdata/";
 
 #if JUCE_MAC
             downloadLocation += "Heavy-MacOS-Universal.tar.xz";
